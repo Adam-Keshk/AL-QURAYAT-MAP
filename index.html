@@ -40,7 +40,10 @@
   <!-- SIDEBAR -->
   <div id="sidebar">
     <div class="sidebar-inner" id="sidebar-inner">
-
+      <!-- زر إخفاء/إظهار الفلاتر على الجوال -->
+      <button class="btn-toggle-sidebar" id="btn-toggle-sidebar" onclick="toggleSidebar()">
+        <i class="fas fa-sliders-h"></i>
+      </button>
       <!-- filters -->
       <div class="filter-section">
         <h3><i class="fas fa-filter"></i> خيارات البحث والفلترة</h3>
@@ -266,6 +269,9 @@ getOpportunities().then(data => {
   document.getElementById('splash').innerHTML = '<div style="color:#fff;font-size:18px;text-align:center"><i class="fas fa-exclamation-triangle" style="font-size:48px;display:block;margin-bottom:16px"></i>تعذّر الاتصال بقاعدة البيانات<br><small style="opacity:0.7">تحقق من الإنترنت أو إعدادات Firebase</small></div>';
 });
 
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
 </script>
 </body>
 </html>
