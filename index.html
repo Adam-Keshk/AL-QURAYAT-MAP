@@ -268,10 +268,22 @@ getOpportunities().then(data => {
   console.error('خطأ في تحميل البيانات:', err);
   document.getElementById('splash').innerHTML = '<div style="color:#fff;font-size:18px;text-align:center"><i class="fas fa-exclamation-triangle" style="font-size:48px;display:block;margin-bottom:16px"></i>تعذّر الاتصال بقاعدة البيانات<br><small style="opacity:0.7">تحقق من الإنترنت أو إعدادات Firebase</small></div>';
 });
-
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
+sta={
+hide : false;
+open : true
 }
+function toggleSidebar(){
+   if(sta.hide == false){
+      sta.hide = true
+      sta.open = false
+      document.getElementById("sidebar").classList.toggle("hide")
+   }
+   if (sta.open == false) {
+      sta.open = true
+      sta.hide = false
+      document.getElementById("sidebar").classList.toggle("open")
+   }
+
 </script>
 </body>
 </html>
