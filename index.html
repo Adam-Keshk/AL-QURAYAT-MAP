@@ -27,12 +27,18 @@
 <div id="header">
   <div class="header-brand">
     <i class="fas fa-map-marked-alt iiii"></i>
-    <div>
-      <img src="imge/غرفة القريات2.png" alt="شعار غرفة القريات" style="width:130px;height:50px;">
-      <img src="imge/logo3.png" alt="شعار" style="width:70px;height:50px;">
+    <div class="header-logos">
+      <img src="imge/غرفة القريات2.png" alt="شعار غرفة القريات" class="logo-main">
+      <img src="imge/logo3.png" alt="شعار" class="logo-sub">
     </div>
   </div>
+  <button class="btn-toggle-sidebar" id="btn-toggle-sidebar" onclick="toggleSidebar()">
+    <i class="fas fa-sliders-h"></i>
+  </button>
 </div>
+
+<!-- SIDEBAR OVERLAY (mobile) -->
+<div id="sidebar-overlay" onclick="toggleSidebar()"></div>
 
 <!-- APP -->
 <div id="app">
@@ -40,10 +46,6 @@
   <!-- SIDEBAR -->
   <div id="sidebar">
     <div class="sidebar-inner" id="sidebar-inner">
-      <!-- زر إخفاء/إظهار الفلاتر على الجوال -->
-      <button class="btn-toggle-sidebar" id="btn-toggle-sidebar" onclick="toggleSidebar()">
-        <i class="fas fa-sliders-h"></i>
-      </button>
       <!-- filters -->
       <div class="filter-section">
         <h3><i class="fas fa-filter"></i> خيارات البحث والفلترة</h3>
@@ -283,6 +285,13 @@ function toggleSidebar(){
       sta.hide = false
       document.getElementById("sidebar").classList.toggle("open")
    }
+
+let sidebarOpen = false;
+function toggleSidebar() {
+  sidebarOpen = !sidebarOpen;
+  document.getElementById('sidebar').classList.toggle('open', sidebarOpen);
+  document.getElementById('sidebar-overlay').classList.toggle('active', sidebarOpen);
+}
 
 </script>
 </body>
