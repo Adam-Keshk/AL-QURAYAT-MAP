@@ -14,7 +14,7 @@
 <div id="splash">
   <div class="splash-logo"><i class="fas fa-map-marked-alt"></i></div>
   <div class="splash-title">خريطة الفرص الاستثمارية</div>
-  <div class="splash-sub">أمانة القريات - منطقة الجوف</div>
+  <div class="splash-sub">غرفة القريات</div>
   <div class="splash-stats">
     <div class="splash-stat"><span class="num" id="s-count">0</span><span class="lbl">فرصة استثمارية</span></div>
     <div class="splash-stat"><span class="num" id="s-hoods">0</span><span class="lbl">حي</span></div>
@@ -28,17 +28,15 @@
   <div class="header-brand">
     <i class="fas fa-map-marked-alt iiii"></i>
     <div class="header-logos">
-      <img src="imge/غرفة القريات2.png" alt="شعار غرفة القريات" class="logo-main">
-      <img src="imge/logo3.png" alt="شعار" class="logo-sub">
+      <img src="imge/wiht.png" alt="شعار غرفة القريات" class="logo-main">
     </div>
+    <div class="logo2030"><img src="imge/logo3.png" alt="شعار" class="logo-sub"></div>
   </div>
   <button class="btn-toggle-sidebar" id="btn-toggle-sidebar" onclick="toggleSidebar()">
     <i class="fas fa-sliders-h"></i>
   </button>
 </div>
 
-<!-- SIDEBAR OVERLAY (mobile) -->
-<div id="sidebar-overlay" onclick="toggleSidebar()"></div>
 
 <!-- APP -->
 <div id="app">
@@ -109,7 +107,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script type="module">
-import { getOpportunities, addOpportunity, updateOpportunity, deleteOpportunity, NEIGHBORHOODS, ACTIVITIES, ACTIVITY_COLORS } from './firebase-config.js';
+import { getOpportunities, NEIGHBORHOODS, ACTIVITIES, ACTIVITY_COLORS } from './firebase-config.js';
 
 // ===== MAP =====
 const map = L.map('map', { zoomControl: false }).setView([31.335, 37.360], 13);
@@ -180,6 +178,7 @@ function updateResultsCount(data) {
   document.getElementById('res-count').innerHTML = data.length;
 }
 
+
 window.focusOpp = function(id) {
   const o = currentData.find(x => x.id === id);
   if (!o) return;
@@ -189,6 +188,7 @@ window.focusOpp = function(id) {
   document.querySelectorAll('.opp-card').forEach(c => c.classList.remove('active'));
   const card = document.getElementById('card-'+id);
   if (card) { card.classList.add('active'); card.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
+  if (window.innerWidth <= 768 && sidebarOpen) toggleSidebar();
 };
 
 // ===== FILTERS =====
@@ -270,27 +270,11 @@ getOpportunities().then(data => {
   console.error('خطأ في تحميل البيانات:', err);
   document.getElementById('splash').innerHTML = '<div style="color:#fff;font-size:18px;text-align:center"><i class="fas fa-exclamation-triangle" style="font-size:48px;display:block;margin-bottom:16px"></i>تعذّر الاتصال بقاعدة البيانات<br><small style="opacity:0.7">تحقق من الإنترنت أو إعدادات Firebase</small></div>';
 });
-sta={
-hide : false;
-open : true
-}
-function toggleSidebar(){
-   if(sta.hide == false){
-      sta.hide = true
-      sta.open = false
-      document.getElementById("sidebar").classList.toggle("hide")
-   }
-   if (sta.open == false) {
-      sta.open = true
-      sta.hide = false
-      document.getElementById("sidebar").classList.toggle("open")
-   }
-
 let sidebarOpen = false;
-function toggleSidebar() {
+window.toggleSidebar = function() {
   sidebarOpen = !sidebarOpen;
   document.getElementById('sidebar').classList.toggle('open', sidebarOpen);
-  document.getElementById('sidebar-overlay').classList.toggle('active', sidebarOpen);
+  document.getElementById('sidebar-overlay').classList.toggle('active', !sidebarOpen);
 }
 
 </script>

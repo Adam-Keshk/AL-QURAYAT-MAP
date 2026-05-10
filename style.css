@@ -39,6 +39,10 @@ body {
   z-index: 9999;
   transition: opacity 0.6s ease;
 }
+#splash.hide {
+  opacity: 0;
+  pointer-events: none;
+}
 
 .splash-logo {
   width: 100px;
@@ -123,6 +127,8 @@ body {
 .header-actions { display: flex; gap: 10px; align-items: center; }
 
 .btn-toggle-sidebar {
+  position: absolute;
+  left: 50%; top: 5px;
   display: none;
   align-items: center;
   justify-content: center;
@@ -140,6 +146,12 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.logo2030{
+  position: absolute;
+  top: 5px;
+  left: 15px;
 }
 .logo-main { width: 130px; height: 50px; }
 .logo-sub  { width: 70px;  height: 50px; }
@@ -167,10 +179,8 @@ body {
   border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   position: relative;
   z-index: 100;
-  
 }
 
 
@@ -369,16 +379,16 @@ body {
 .legend {
   position: fixed;
   bottom: 30px;
-  right: 380px;
+  right: 376px;
   background: #fff;
   border-radius: 10px;
   padding: 12px 16px;
   box-shadow: var(--shadow);
   z-index: 500;
   font-size: 12px;
-  transition: right 0.3s;
+  max-height: calc(100vh - var(--header-height) - 60px);
+  overflow-y: auto;
 }
-.legend.sidebar-collapsed { right: 20px; }
 .legend h4 { font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
 .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
 .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
@@ -398,23 +408,16 @@ body {
 }
 .chart-panel.show { display: block; }
 .chart-panel h4 { font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+/* ===== TABLET (769px - 1024px) ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  #sidebar { width: 300px; }
+  .legend { right: 316px; }
+  .logo-main { width: 110px; height: 42px; }
+  .logo-sub  { width: 60px;  height: 42px; }
+}
+
+/* ===== MOBILE (max 768px) ===== */
 @media (max-width: 768px) {
-<<<<<<< HEAD
-  /* الزر يظهر فقط على الجوال */
-  .btn-toggle-sidebar { display: flex; }
-
-  /* الـ sidebar يختفي بالكامل افتراضياً */
-  #sidebar {
-    position: fixed;
-    right: 0; top: var(--header-height); bottom: 0;
-    width: 100%;          /* يمتد للعرض كامل */
-    z-index: 500;
-    transform: translateX(110%); /* مخفي لليمين */
-    transition: transform 0.3s ease;
-  }
-
-  /* عند الضغط على الزر يظهر */
-=======
   :root { --header-height: 56px; }
 
   .btn-toggle-sidebar { display: flex; }
@@ -432,15 +435,10 @@ body {
     box-shadow: -4px 0 20px rgba(0,0,0,0.2);
   }
 
->>>>>>> 7b10bbb (تحسين التوافق مع الهواتف والأجهزة اللوحية)
   #sidebar.open {
     transform: translateX(0);
   }
 
-<<<<<<< HEAD
-  .legend { right: 20px; bottom: 80px; }
-}
-=======
   #map { width: 100%; }
 
   .legend {
@@ -458,5 +456,5 @@ body {
   .splash-sub   { font-size: 14px; }
   .splash-stats { gap: 20px; }
   .splash-stat .num { font-size: 28px; }
+  .splash-bar-wrap { width: 80vw; }
 }
->>>>>>> 7b10bbb (تحسين التوافق مع الهواتف والأجهزة اللوحية)
